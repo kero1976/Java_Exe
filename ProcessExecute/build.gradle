@@ -1,0 +1,45 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile('org.junit.jupiter:junit-jupiter-api:5.2.0')
+    testCompile('org.junit.jupiter:junit-jupiter-migrationsupport:5.2.0')
+    testCompile('commons-io:commons-io:2.6')
+    testCompile('mysql:mysql-connector-java:5.1.46')
+    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.2.0')
+}
+
+test {
+    useJUnitPlatform{
+	    if (project.hasProperty('incTags')) {
+	    	for(String s: incTags.split(',')){
+				includeTags s
+			}
+		}
+		if (project.hasProperty('excTags')) {
+	    	for(String s: excTags.split(',')){
+				excludeTags s
+			}
+		}
+	}
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+    reports {
+        html.enabled = true
+    }
+}
+
+task wrapper(type: Wrapper) {
+    description = 'Generates gradlew[.bat] scripts'
+    gradleVersion = '4.6'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
