@@ -2,13 +2,18 @@ apply plugin: 'java'
 
 repositories {
     mavenCentral()
+    maven {
+        url "http://central.maven.org/maven2/"
+    }
 }
 
+//リポジトリからダウンロードした jar ファイルは、 %ユーザのホームフォルダ%\.gradle\caches 以下に保存される。
 dependencies {
     testCompile('org.junit.jupiter:junit-jupiter-api:5.2.0')
     testCompile('org.junit.jupiter:junit-jupiter-migrationsupport:5.2.0')
     testCompile('commons-io:commons-io:2.6')
     testCompile('mysql:mysql-connector-java:5.1.46')
+    testCompile('org.postgresql:postgresql:42.2.5')
     testRuntime('org.junit.jupiter:junit-jupiter-engine:5.2.0')
 }
 
