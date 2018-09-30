@@ -6,6 +6,7 @@ repositories {
 
 //リポジトリからダウンロードした jar ファイルは、 %ユーザのホームフォルダ%\.gradle\caches 以下に保存される。
 dependencies {
+	testCompile files('lib/auto/ojdbc8.jar')
     testCompile('org.junit.jupiter:junit-jupiter-api:5.2.0')
     testCompile('org.junit.jupiter:junit-jupiter-migrationsupport:5.2.0')
     testCompile('commons-io:commons-io:2.6')
